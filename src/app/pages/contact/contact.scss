@@ -1,0 +1,83 @@
+.hours-box {
+  border: 1px solid #e0ddd8;
+  padding: 20px 24px;
+  margin-top: 20px;
+
+  h4 { font-weight: 600; margin-bottom: 14px; font-size: 15px; }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0ddd8;
+    font-size: 14px;
+    &:last-child { border-bottom: none; }
+  }
+
+  .hours-time { color: #8B4513; font-weight: 600; }
+  .closed     { color: #aaa; }
+}
+
+.btn-full { width: 100%; justify-content: center; }
+
+.success-msg {
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: #f0faf0;
+  border: 1px solid #b6dfb6;
+  color: #2d6a2d;
+  font-size: 14px;
+}
+
+// ── OUR BRANDS COMPONENT SCSS ────────────────────────────────
+.error-msg {
+  background: #fff3f3;
+  border: 1px solid #e88;
+  color: #c00;
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  margin-bottom: 12px;
+}
+
+.success-msg {
+  background: #f0faf3;
+  border: 1px solid #6c9;
+  color: #2a7a3b;
+  padding: 14px 16px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-top: 14px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.page-hero {
+  background-color: #1a1a1a;
+  padding: 80px 0 60px;
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .hero-sub {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: #c8a96e;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+}

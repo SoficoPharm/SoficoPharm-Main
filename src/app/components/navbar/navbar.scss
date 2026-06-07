@@ -1,0 +1,238 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 1px 0 #e0ddd8;
+}
+
+/* ===========================
+   TOP BAR
+=========================== */
+
+.nav-top {
+  display: flex;
+  align-items: center;
+  min-height: 80px;
+  gap: 16px;
+}
+
+/* ===========================
+   LOGO
+=========================== */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-icon {
+  flex-shrink: 0;
+  width: 180px;
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+  }
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1;
+}
+
+.logo-sub {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #888;
+  text-transform: uppercase;
+}
+
+/* ===========================
+   CONTACT
+=========================== */
+
+.nav-contact {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.contact-phone,
+.contact-email {
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+}
+
+/* ===========================
+   HAMBURGER
+=========================== */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+
+  span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #1a1a1a;
+    transition: all .3s;
+  }
+
+  &.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  &.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  &.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* ===========================
+   NAVIGATION
+=========================== */
+
+.nav-links {
+  border-top: 1px solid #e0ddd8;
+}
+
+.nav-links-inner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  display: block;
+  padding: 13px 15px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c2c2c;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: .2s;
+  white-space: nowrap;
+}
+
+.nav-links a:hover {
+  color: #8B4513;
+}
+
+.nav-links a.active {
+  color: #8B4513;
+  border-bottom-color: #8B4513;
+  font-weight: 600;
+}
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media (max-width: 992px) {
+
+  .logo-icon {
+    width: 140px;
+  }
+
+  .logo-name {
+    font-size: 16px;
+  }
+
+  .contact-phone,
+  .contact-email {
+    font-size: 13px;
+  }
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media (max-width: 900px) {
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-contact {
+    display: none;
+  }
+
+  .logo-icon {
+    width: 120px;
+  }
+
+  .logo-name {
+    font-size: 15px;
+  }
+
+  .logo-sub {
+    font-size: 8px;
+  }
+
+  .nav-links {
+    display: none;
+
+    &.open {
+      display: block;
+    }
+  }
+
+  .nav-links-inner {
+    flex-direction: column;
+  }
+
+  .nav-links a {
+    border-bottom: 1px solid #e0ddd8;
+    padding: 14px 0;
+    width: 100%;
+  }
+}
+
+/* ===========================
+   SMALL MOBILE
+=========================== */
+
+@media (max-width: 480px) {
+
+  .nav-top {
+    min-height: 70px;
+  }
+
+  .logo-icon {
+    width: 95px;
+  }
+
+  .logo-name {
+    font-size: 13px;
+  }
+
+  .logo-sub {
+    font-size: 7px;
+    letter-spacing: 1px;
+  }
+}

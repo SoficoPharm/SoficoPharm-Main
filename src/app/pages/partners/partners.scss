@@ -1,0 +1,172 @@
+// ── OUR PARTNERS COMPONENT SCSS ──────────────────────────────
+
+.page-hero {
+  background-color: #1a1a1a;
+  padding: 80px 0 60px;
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+
+  .hero-sub {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    color: #c8a96e;
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+}
+
+.section { padding: 64px 0; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+// ── MAIN HEADING ─────────────────────────────────────────────
+.partners-main-title {
+  text-align: center;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #1a1a1a;
+  margin: 0 0 48px;
+  text-transform: uppercase;
+}
+
+// ── 3-COLUMN GRID ────────────────────────────────────────────
+.partners-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── EACH COLUMN ──────────────────────────────────────────────
+.partners-col {
+  padding: 32px 28px 40px;
+  border-right: 1px solid #ddd;
+  background: #fff;
+
+  &:last-child { border-right: none; }
+
+  @media (max-width: 900px) {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    &:last-child { border-bottom: none; }
+  }
+}
+
+// ── COLUMN HEADER ────────────────────────────────────────────
+.partners-col-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0;
+  }
+}
+
+.partners-col-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  border: 2px solid #c8a96e;
+  background: transparent;   // ← fixes solid black circle
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    stroke: #c8a96e;         // ← makes SVG lines gold, not black
+    fill: none;
+  }
+}
+
+// ── PARTNER LIST ─────────────────────────────────────────────
+.partners-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #333;
+    letter-spacing: 0.025em;
+    padding: 7px 0;
+    border-bottom: 1px solid #f0f0f0;
+    background: transparent;  // ← fixes black rectangle behind each item
+    line-height: 1.4;
+
+    &:last-child { border-bottom: none; }
+  }
+}
+
+// ── CTA BANNER ───────────────────────────────────────────────
+.cta-banner {
+  background: #f7f3ee;
+  border: 1px solid #e8ddd0;
+  border-radius: 10px;
+  padding: 48px 40px;
+  text-align: center;
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 10px;
+  }
+
+  p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0 auto 24px;
+    max-width: 520px;
+  }
+}
+
+.btn-primary {
+  display: inline-block;
+  background: #c8a96e;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: background 0.2s;
+
+  &:hover { background: #b8954f; }
+}

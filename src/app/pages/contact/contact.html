@@ -1,0 +1,66 @@
+<div class="page-hero">
+  <div class="hero-inner">
+    <p class="hero-sub">GET IN TOUCH</p>
+    <h1>CONTACT US</h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="two-col">
+
+      <!-- Info -->
+      <div>
+        <h2 class="section-title">Contact Information</h2>
+        <div class="info-box" style="margin-top:0">
+          <div class="info-row"><span class="info-icon">📞</span><div><div class="info-label">PHONE</div><div class="info-value">16556</div><div class="info-sub">Sun – Thu, 9:00 AM – 5:00 PM</div></div></div>
+          <div class="info-row"><span class="info-icon">✉</span><div><div class="info-label">EMAIL — DRUG SAFETY</div><div class="info-value">CCSPV&#64;Soficopharm.net</div><div class="info-sub">Pharmacovigilance &amp; product quality complaints</div></div></div>
+          <div class="info-row"><span class="info-icon">✉</span><div><div class="info-label">EMAIL — GENERAL</div><div class="info-value">office&#64;soficopharm.com</div><div class="info-sub">Response within 24 hours</div></div></div>
+          <div class="info-row"><span class="info-icon">📍</span><div><div class="info-label">ADDRESS</div><div class="info-value">12 Ismail El Kabani St., Nasr City</div><div class="info-sub">Cairo 11765, Egypt</div></div></div>
+        </div>
+        <div class="hours-box">
+          <h4>Business Hours</h4>
+          <div class="hours-row"><span>Sunday – Thursday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><span>Friday – Saturday</span><span class="closed">Closed</span></div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div>
+        <h2 class="section-title">Send a Message</h2>
+        <div class="form-row">
+          <div class="form-group"><label>FIRST NAME *</label><input type="text" [(ngModel)]="msg.firstName" name="firstName" placeholder="John" /></div>
+          <div class="form-group"><label>LAST NAME</label><input type="text" [(ngModel)]="msg.lastName" name="lastName" placeholder="Doe" /></div>
+        </div>
+        <div class="form-group"><label>EMAIL *</label><input type="email" [(ngModel)]="msg.email" name="email" placeholder="john&#64;company.com" /></div>
+        <div class="form-group"><label>PHONE</label><input type="tel" [(ngModel)]="msg.phone" name="phone" placeholder="+20 1XX XXX XXXX" /></div>
+        <div class="form-group">
+          <label>SUBJECT</label>
+          <select [(ngModel)]="msg.subject" name="subject">
+            <option value="">Select a subject...</option>
+            <option>General Inquiry</option>
+            <option>Order Request</option>
+            <option>Partnership</option>
+            <option>Export Inquiry</option>
+            <option>Adverse Event / Drug Safety Report</option>
+            <option>Support</option>
+          </select>
+        </div>
+        <div class="form-group"><label>MESSAGE *</label><textarea [(ngModel)]="msg.message" name="message" rows="5" placeholder="Write your message here..."></textarea></div>
+
+        @if (errorMsg()) {
+          <div class="error-msg">⚠ {{ errorMsg() }}</div>
+        }
+
+        <button class="btn-primary btn-full" (click)="send()" [disabled]="loading()">
+          @if (loading()) { Sending... } @else { Send Message → }
+        </button>
+
+        @if (sent()) {
+          <div class="success-msg">✓ Your message has been sent. We will get back to you within 24 hours.</div>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

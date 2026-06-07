@@ -1,0 +1,97 @@
+<div class="page-hero">
+  <div class="hero-inner">
+    <p class="hero-sub">GLOBAL NETWORK</p>
+    <h1>OUR PARTNERS</h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+
+    <h2 class="partners-main-title">IMPORTATION &amp; DISTRIBUTION PARTNERS</h2>
+
+    <div class="partners-3col">
+
+      <!-- Column 1: Importation -->
+      <div class="partners-col">
+        <div class="partners-col-header">
+          <div class="partners-col-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6"  x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6"  x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </div>
+          <h3>Importation:</h3>
+        </div>
+        <ul class="partners-list">
+          @for (p of importationPartners; track p.name) {
+            <li>→ {{ p.name }}</li>
+          }
+        </ul>
+      </div>
+
+      <!-- Column 2: Distribution -->
+      <div class="partners-col">
+        <div class="partners-col-header">
+          <div class="partners-col-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6"  x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6"  x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </div>
+          <h3>Distribution:</h3>
+        </div>
+        <ul class="partners-list">
+          @for (p of distributionPartners; track p.name) {
+            <li>→ {{ p.name }}</li>
+          }
+        </ul>
+      </div>
+
+      <!-- Column 3: New Partners -->
+      <div class="partners-col">
+        <div class="partners-col-header">
+          <div class="partners-col-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6"  x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6"  x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </div>
+          <h3>NEW PARTNERS:</h3>
+        </div>
+        <ul class="partners-list">
+          @for (p of newPartners; track p.name) {
+            <li>→ {{ p.name }}</li>
+          }
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="cta-banner" style="margin-top:56px">
+      <h3>Become a Partner</h3>
+      <p>
+        Interested in partnering with SOFICOPHARM? With decades of market expertise, a nationwide
+        logistics network, and a team of 1,500+ professionals, we are the ideal distribution
+        partner for your pharmaceutical products in Egypt.
+      </p>
+      <a routerLink="/contact" class="btn-primary">Contact Us →</a>
+    </div>
+
+  </div>
+</section>

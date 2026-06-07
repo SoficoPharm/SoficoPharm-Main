@@ -1,0 +1,53 @@
+<header class="navbar">
+  <div class="nav-top container">
+
+    <!-- Logo -->
+    <a class="logo" routerLink="/">
+      <div class="logo-icon">
+        <img
+          src="/logoSoficoPharam.png"
+          alt="Sofico Pharm Logo">
+      </div>
+
+     
+    </a>
+
+    <!-- Contact -->
+    <div class="nav-contact">
+      <span class="contact-phone">
+        📞 16556
+      </span>
+
+      <span class="contact-email">
+        CCSPV@Soficopharm.net
+      </span>
+    </div>
+
+    <!-- Hamburger -->
+    <button
+      class="hamburger"
+      (click)="toggleMenu()"
+      [class.open]="menuOpen()">
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </button>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav-links" [class.open]="menuOpen()">
+    <div class="container nav-links-inner">
+      @for (link of navLinks; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.exact }"
+          (click)="closeMenu()">
+          {{ link.label }}
+        </a>
+      }
+    </div>
+  </nav>
+</header>

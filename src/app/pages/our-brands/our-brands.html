@@ -1,0 +1,39 @@
+<div class="page-hero">
+  <div class="hero-inner">
+    <p class="hero-sub">PRODUCT PORTFOLIO</p>
+    <h1>OUR BRANDS</h1>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Our Brand Portfolio</h2>
+    <p class="body-text" style="margin-bottom:40px">
+      SOFICOPHARM owns and distributes a family of specialised pharmaceutical and wellness brands,
+      each backed by rigorous quality standards and decades of industry expertise. From prescription
+      medicines to nutritional supplements and cosmetics, every brand reflects our commitment to
+      enhancing patient quality of life.
+    </p>
+
+    <!-- 4 logos per row grid -->
+    <div class="logo-grid-4">
+      @for (b of brands; track b.name) {
+        <div class="logo-cell">
+          <img [src]="b.img" [alt]="b.name" />
+        </div>
+      }
+    </div>
+
+    <div class="cta-banner">
+      <h3>Looking for a specific product?</h3>
+      <p>
+        With over 2,000 SKUs across therapeutic areas, contact us to find any medicine
+        not listed above or to request our full product catalogue.
+      </p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a routerLink="/contact" class="btn-primary">Contact Us →</a>
+        <a href="/cats/InternationalPortfolio.pdf" target="_blank" class="btn-outline">Download Catalogue</a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,83 @@
+<!-- Hero -->
+<section
+  class="home-hero"
+  [style.background-image]="'url(' + slides[currentSlide] + ')'">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-sub">
+      PHARMACEUTICALS S.A.E — EGYPT
+    </p>
+
+    <h1>SOFICOPHARM</h1>
+
+    <p class="hero-tagline">
+      Egypt's first private pharmaceutical company —
+      delivering world-class healthcare solutions to
+      32,000+ pharmacies, hospitals, and clinics nationwide.
+    </p>
+
+    <div class="hero-actions">
+      <a routerLink="/order-now" class="btn-primary">
+        Order Now →
+      </a>
+
+      <a routerLink="/about" class="btn-ghost">
+        Learn More
+      </a>
+    </div>
+
+    <!-- Dots -->
+    <div class="slider-dots">
+      @for (slide of slides; track $index) {
+        <span
+          class="dot"
+          [class.active]="$index === currentSlide">
+        </span>
+      }
+    </div>
+  </div>
+
+</section>
+
+<!-- Stats bar -->
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">70+</span><span class="stat-label">Years of Excellence</span></div>
+  <div class="stat-item"><span class="stat-num">2,000+</span><span class="stat-label">SKUs Available</span></div>
+  <div class="stat-item"><span class="stat-num">50+</span><span class="stat-label">Global Partners</span></div>
+  <div class="stat-item"><span class="stat-num">1,500+</span><span class="stat-label">Team Members</span></div>
+</div>
+
+<!-- Services -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Our Services</h2>
+    <p class="body-text" style="margin-bottom:24px">
+      With decades of experience and a highly capable team, we offer turnkey pharmaceutical services —
+      from market surveying all the way through to distribution and money collection.
+    </p>
+    <ul class="arrow-list">
+      <li>Registration procedures</li>
+      <li>Importation and approvals</li>
+      <li>PSP (Patient Support Program)</li>
+      <li>Sales &amp; Marketing</li>
+      <li>In-licensing &amp; Outsourcing</li>
+      <li>Supply chain with all logistics functions (importation, custom clearance, warehousing, distribution)</li>
+      <li>Product return and expiry collection</li>
+      <li>Third party printing and warehousing</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <div class="container">
+    <h3>Ready to Work With Us?</h3>
+    <p>
+      Contact our team to discuss how SOFICOPHARM can serve your pharmaceutical needs —
+      whether you are a healthcare facility, a global manufacturer, or an export partner.
+    </p>
+    <a routerLink="/contact" class="btn-primary">Contact Us →</a>
+  </div>
+</section>
