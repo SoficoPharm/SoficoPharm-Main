@@ -10,9 +10,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   styleUrl: './contact.scss',
 })
 export class ContactComponent {
-  sent     = signal(false);
-  loading  = signal(false);
-  errorMsg = signal('');
+  sent      = signal(false);
+  loading   = signal(false);
+  errorMsg  = signal('');
+  showModal = signal(false);  // Control privacy modal visibility
 
   msg = {
     firstName: '',
@@ -23,19 +24,53 @@ export class ContactComponent {
     message:   '',
   };
 
+  private pendingSend = false; // Flag to track if send was triggered
+
   private readonly API = 'https://formapi.soficopharm.net/api/Enquiry';
 
   constructor(private http: HttpClient) {}
 
-  send(): void {
+  /** Validate form fields */
+  private validateForm(): boolean {
     this.errorMsg.set('');
 
     if (!this.msg.firstName || !this.msg.email || !this.msg.message) {
       this.errorMsg.set('Please fill in all required fields (First Name, Email, Message).');
+      return false;
+    }
+    return true;
+  }
+
+  /** Called when user clicks "Send Message" */
+  send(): void {
+    if (!this.validateForm()) {
       return;
     }
 
+    // Show privacy modal instead of sending directly
+    this.showModal.set(true);
+    this.pendingSend = true;
+  }
+
+  /** Called when user agrees to privacy terms */
+  agree(): void {
+    this.showModal.set(false);
+    if (this.pendingSend) {
+      this.submitEnquiry();
+      this.pendingSend = false;
+    }
+  }
+
+  /** Called when user declines privacy terms */
+  decline(): void {
+    this.showModal.set(false);
+    this.pendingSend = false;
+  }
+
+  /** Actually submit the enquiry to the API */
+  private submitEnquiry(): void {
     this.loading.set(true);
+    this.errorMsg.set('');
 
     const payload = {
       firstName: this.msg.firstName,
@@ -51,6 +86,7 @@ export class ContactComponent {
         this.loading.set(false);
         this.sent.set(true);
         this.msg = { firstName: '', lastName: '', email: '', phone: '', subject: '', message: '' };
+        // Show success toast notification (optional)
       },
       error: (err) => {
         this.loading.set(false);

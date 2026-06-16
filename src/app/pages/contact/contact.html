@@ -15,14 +15,18 @@
         <div class="info-box" style="margin-top:0">
           <div class="info-row"><span class="info-icon">📞</span><div><div class="info-label">PHONE</div><div class="info-value">16556</div><div class="info-sub">Sun – Thu, 9:00 AM – 5:00 PM</div></div></div>
           <div class="info-row"><span class="info-icon">✉</span><div><div class="info-label">EMAIL — DRUG SAFETY</div><div class="info-value">CCSPV&#64;Soficopharm.net</div><div class="info-sub">Pharmacovigilance &amp; product quality complaints</div></div></div>
-          <div class="info-row"><span class="info-icon">✉</span><div><div class="info-label">EMAIL — GENERAL</div><div class="info-value">office&#64;soficopharm.com</div><div class="info-sub">Response within 24 hours</div></div></div>
+          <div class="info-row"><span class="info-icon">✉</span><div><div class="info-label">EMAIL — GENERAL</div>
+          <div class="info-value">office&#64;soficopharm.com</div>
+          <div class="info-value">kelashram&#64;soficopharm.com</div>
+          <div class="info-sub">Business & Partnerships</div>
+           </div></div>
           <div class="info-row"><span class="info-icon">📍</span><div><div class="info-label">ADDRESS</div><div class="info-value">12 Ismail El Kabani St., Nasr City</div><div class="info-sub">Cairo 11765, Egypt</div></div></div>
         </div>
-        <div class="hours-box">
+        <!-- <div class="hours-box">
           <h4>Business Hours</h4>
           <div class="hours-row"><span>Sunday – Thursday</span><span class="hours-time">9:00 AM – 5:00 PM</span></div>
           <div class="hours-row"><span>Friday – Saturday</span><span class="closed">Closed</span></div>
-        </div>
+        </div> -->
       </div>
 
       <!-- Form -->
@@ -64,3 +68,37 @@
     </div>
   </div>
 </section>
+
+<!-- ============================================================ -->
+<!-- PRIVACY NOTICE MODAL (like the old site)                      -->
+<!-- ============================================================ -->
+<div class="privacy-modal" [class.show]="showModal()" (click)="$event.target === $event.currentTarget && decline()">
+  <div class="privacy-modal-content">
+    <h3>Privacy Notice / إشعار الخصوصية</h3>
+
+    <div class="privacy-text">
+      <p>
+        <strong>English:</strong><br>
+        The Company will save the contact information, medical information, and other information that you share with us.
+        The Company may use this information, for example, to answer your questions, assess our products, inform health agencies,
+        and for other business purposes. The information will be treated in accordance with applicable law.
+        You have the right to request access to your data, correct any errors, restrict its use, or request its deletion.
+      </p>
+
+      <hr>
+
+      <p dir="rtl" style="text-align:right;">
+        <strong>العربية:</strong><br>
+        ستقوم الشركة بحفظ معلومات الاتصال والمعلومات الطبية والمعلومات الأخرى التي تشاركها معنا.
+        قد تستخدم الشركة هذه المعلومات، على سبيل المثال، للإجابة على استفساراتك، وتقييم منتجاتنا،
+        وإبلاغ الجهات الصحية، ولأغراض أعمالنا الأخرى. سيتم التعامل مع هذه المعلومات وفقًا للقانون المعمول به.
+        لديك الحق في طلب الوصول إلى بياناتك، وتصحيح أي أخطاء، وتقييد استخدامها، أو طلب حذفها.
+      </p>
+    </div>
+
+    <div class="privacy-actions">
+      <button type="button" class="privacy-btn cancel-btn" (click)="decline()">Cancel / إلغاء</button>
+      <button type="button" class="privacy-btn agree-btn" (click)="agree()">I Agree / أوافق</button>
+    </div>
+  </div>
+</div>

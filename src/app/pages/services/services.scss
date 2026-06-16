@@ -1,14 +1,111 @@
-// ── OUR BRANDS COMPONENT SCSS ────────────────────────────────
+// ── ENTRANCE KEYFRAMES ────────────────────────────────────────
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
 
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroRise {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroLineDraw {
+  to { width: 64px; }
+}
+
+// ── SCROLL / ENTRANCE REVEAL SYSTEM ────────────────────────────
+// Drives every element marked #animatedElement in the template.
+// Hidden by default, fades + rises into place once Angular adds
+// "is-visible" (done via IntersectionObserver in services.ts).
+// The hero gets its own dedicated sequence below instead, since it
+// is always on-screen on load and deserves a more deliberate beat.
+.section-title,
+.body-text,
+.service-card,
+.stats-section,
+.channels-section,
+.delivery-section,
+.tender-section,
+.cta-banner {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Service cards cascade in one-by-one instead of popping in together.
+@for $i from 1 through 8 {
+  .service-grid .service-card:nth-child(#{$i}) {
+    transition-delay: #{($i - 1) * 0.08}s;
+  }
+}
+
+// ── HERO ──────────────────────────────────────────────────────────
 .page-hero {
   background-color: #1a1a1a;
   padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(200, 169, 110, 0.05) 0%, transparent 70%);
+    animation: rotateBackground 20s linear infinite;
+  }
 
   .hero-inner {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
     text-align: center;
+    position: relative;
+    z-index: 1;
+
+    // Thin gold line that draws itself in after the title lands —
+    // the same "signature" accent used on .section-title, just timed
+    // to finish the hero's entrance sequence.
+    &::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #c8a96e;
+      margin: 24px auto 0;
+      animation: heroLineDraw 0.6s ease 0.9s forwards;
+    }
   }
 
   .hero-sub {
@@ -17,6 +114,8 @@
     color: #c8a96e;
     text-transform: uppercase;
     margin: 0 0 12px;
+    opacity: 0;
+    animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
   }
 
   h1 {
@@ -25,5 +124,651 @@
     color: #fff;
     letter-spacing: 0.06em;
     margin: 0;
+    opacity: 0;
+    animation: heroRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  }
+}
+
+@keyframes rotateBackground {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// ── SECTION ──────────────────────────────────────────────────────
+.section {
+  padding: 64px 0 80px;
+  background: #faf8f6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 3px;
+    background: #c8a96e;
+    margin-top: 10px;
+  }
+
+  // The underline only draws once the heading itself has scrolled
+  // into view and started revealing — keeps the two in sync.
+  &.is-visible::after {
+    animation: expandWidth 0.6s ease 0.2s forwards;
+  }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 48px; }
+}
+
+.body-text {
+  color: #555;
+  font-size: 0.97rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
+// ── SERVICES GRID ────────────────────────────────────────────────
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-card {
+    cursor: pointer;
+
+    .service-inner {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid #e8e5e0;
+
+      &:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        transform: translateY(-6px);
+        border-color: #c8a96e;
+      }
+    }
+
+    .service-image {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      .service-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.4s ease;
+
+        .view-details {
+          color: #fff;
+          font-size: 0.85rem;
+          font-weight: 600;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          padding: 10px 24px;
+          border: 2px solid #fff;
+          border-radius: 4px;
+          transform: scale(0.8);
+          transition: all 0.4s ease;
+
+          &:hover {
+            background: #c8a96e;
+            border-color: #c8a96e;
+            transform: scale(1);
+          }
+        }
+      }
+
+      &:hover {
+        img { transform: scale(1.08); }
+        .service-overlay { opacity: 1; }
+        .view-details { transform: scale(1); }
+      }
+    }
+
+    .service-content {
+      padding: 18px 20px;
+      text-align: center;
+
+      h3 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin: 0;
+      }
+    }
+  }
+}
+
+// ── STATS SECTION ──────────────────────────────────────────────
+.stats-section {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 48px 40px;
+  margin-bottom: 56px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stat-item {
+  text-align: center;
+  color: #fff;
+
+  .stat-number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #c8a96e;
+    line-height: 1.2;
+    display: inline-block;
+
+    .stat-suffix {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #c8a96e;
+    }
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 4px;
+  }
+}
+
+// ── CHANNELS SECTION ───────────────────────────────────────────
+.channels-section {
+  margin-bottom: 56px;
+}
+
+.channels-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.channel-item {
+  background: #fff;
+  padding: 24px 16px;
+  border-radius: 10px;
+  border: 1px solid #e8e5e0;
+  text-align: center;
+  transition: all 0.4s ease;
+
+  &:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px) scale(1.02);
+    border-color: #c8a96e;
+  }
+
+  .channel-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(200, 169, 110, 0.08);
+    border-radius: 50%;
+    transition: all 0.4s ease;
+  }
+
+  &:hover .channel-icon {
+    background: rgba(200, 169, 110, 0.15);
+    transform: scale(1.1) rotate(5deg);
+  }
+
+  span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+}
+
+// ── DELIVERY SECTION ───────────────────────────────────────────
+.delivery-section {
+  margin-bottom: 56px;
+}
+
+.delivery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.delivery-item {
+  background: #fff;
+  padding: 24px 20px;
+  border-radius: 10px;
+  border: 1px solid #e8e5e0;
+  text-align: center;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #c8a96e;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+    border-color: #c8a96e;
+
+    &::before { transform: scaleX(1); }
+  }
+
+  .delivery-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #c8a96e;
+    opacity: 0.2;
+    line-height: 1;
+  }
+
+  h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 4px 0 0;
+  }
+}
+
+// ── TENDER SECTION ─────────────────────────────────────────────
+.tender-section {
+  background: linear-gradient(135deg, #f7f3ee 0%, #f0ebe4 100%);
+  border-radius: 12px;
+  padding: 48px 40px;
+  margin-bottom: 56px;
+  border: 1px solid #e8ddd0;
+}
+
+.tender-content {
+  text-align: center;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 12px;
+  }
+
+  p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto 24px;
+  }
+}
+
+.tender-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.tender-stat {
+  text-align: center;
+
+  .number {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #c8a96e;
+    display: block;
+  }
+
+  .label {
+    font-size: 0.8rem;
+    color: #666;
+    font-weight: 500;
+  }
+}
+
+// ── CTA BANNER ──────────────────────────────────────────────────
+.cta-banner {
+  background: #1a1a1a;
+  border-radius: 12px;
+  padding: 48px 40px;
+  text-align: center;
+  color: #fff;
+
+  h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 10px;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    margin: 0 auto 24px;
+    max-width: 520px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: #c8a96e;
+    color: #fff;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #b8954f;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200, 169, 110, 0.3);
+    }
+  }
+}
+
+// ── MODAL ────────────────────────────────────────────────────────
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 12px;
+  max-width: 880px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 8px;
+  color: #fff;
+  transition: all 0.3s ease;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke: #fff;
+  }
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: rotate(90deg) scale(1.1);
+  }
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 600px) {
+    flex-direction: row;
+  }
+}
+
+.modal-image {
+  flex: 0 0 40%;
+  min-height: 250px;
+  background: #f5f3f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    animation: zoomIn 0.5s ease;
+
+    @media (min-width: 600px) {
+      border-radius: 12px 0 0 12px;
+    }
+  }
+}
+
+.modal-info {
+  flex: 1;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: slideInRight 0.4s ease;
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 12px;
+  }
+
+  .service-desc {
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #555;
+    margin: 0 0 20px;
+  }
+
+  .feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 0.88rem;
+      color: #444;
+      opacity: 0;
+      animation: fadeInItem 0.3s ease forwards;
+
+      &:nth-child(1) { animation-delay: 0.05s; }
+      &:nth-child(2) { animation-delay: 0.1s; }
+      &:nth-child(3) { animation-delay: 0.15s; }
+      &:nth-child(4) { animation-delay: 0.2s; }
+      &:nth-child(5) { animation-delay: 0.25s; }
+
+      @keyframes fadeInItem {
+        from {
+          opacity: 0;
+          transform: translateX(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      svg {
+        flex-shrink: 0;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+}
+
+// ── STAT NUMBER EMPHASIS ────────────────────────────────────────
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.stat-item .stat-number {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+// ── REDUCED MOTION ──────────────────────────────────────────────
+// Respect the user's OS-level preference: skip the choreography,
+// show everything immediately and at full size.
+@media (prefers-reduced-motion: reduce) {
+  .hero-sub,
+  .hero-inner h1,
+  .section-title,
+  .body-text,
+  .service-card,
+  .stats-section,
+  .channels-section,
+  .delivery-section,
+  .tender-section,
+  .cta-banner {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-inner::after {
+    animation: none !important;
+    width: 64px !important;
+  }
+
+  .section-title::after {
+    animation: none !important;
+    width: 48px !important;
+  }
+
+  .stat-item .stat-number {
+    animation: none !important;
   }
 }

@@ -18,7 +18,7 @@
     <!-- 4 logos per row grid -->
     <div class="logo-grid-4">
       @for (b of brands; track b.name) {
-        <div class="logo-cell">
+        <div class="logo-cell" (click)="openModal(b)">
           <img [src]="b.img" [alt]="b.name" />
         </div>
       }
@@ -37,3 +37,41 @@
     </div>
   </div>
 </section>
+
+<!-- ============================================================ -->
+<!--  MODAL - زي الموقع القديم بالضبط                             -->
+<!-- ============================================================ -->
+@if (selectedBrand) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <button class="modal-close" (click)="closeModal()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      
+      <div class="modal-body">
+        <!-- صورة كبيرة -->
+        <div class="modal-image">
+          <img 
+            [src]="selectedBrand.modalImg || selectedBrand.img" 
+            [alt]="selectedBrand.name" 
+          />
+        </div>
+        
+        <!-- معلومات العلامة التجارية -->
+        <div class="modal-info">
+          <h2>{{ selectedBrand.name }}</h2>
+          <span class="brand-category">{{ selectedBrand.category }}</span>
+          <p class="brand-desc">{{ selectedBrand.desc }}</p>
+          
+          @if (selectedBrand.link) {
+            <button class="btn-visit" (click)="openLink(selectedBrand.link)">
+              Visit Website →
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+}

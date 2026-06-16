@@ -16,8 +16,8 @@ export class NavbarComponent {
     { label: 'About Us',     path: '/about',     exact: false },
     { label: 'Our Partners', path: '/partners',  exact: false },
     { label: 'Services',     path: '/services',  exact: false },
-    { label: 'Order Now',    path: '/order-now', exact: false },
-    { label: 'Export',       path: '/export',    exact: false },
+    // { label: 'Order Now',    path: '/order-now', exact: false },
+    // { label: 'Export',       path: '/export',    exact: false },
     { label: 'Our Brands',   path: '/brands',    exact: false },
     { label: 'Contact Us',   path: '/contact',   exact: false },
   ];

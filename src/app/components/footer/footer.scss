@@ -1,43 +1,187 @@
 .footer {
   background: #1a1a1a;
-  color: rgba(255,255,255,.75);
+  color: rgba(255, 255, 255, 0.75);
   padding-top: 52px;
-}
+  padding-bottom: 0;
 
-.footer-inner {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 40px;
-  padding-bottom: 44px;
-}
-
-.footer-col {
-  h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: 10px; }
-  h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 14px; }
-  p  { font-size: 13px; line-height: 1.7; }
-
-  ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    li, a { font-size: 13px; color: rgba(255,255,255,.6); transition: color .2s; }
-    a:hover { color: #A0522D; }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
-}
 
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.08);
-  padding: 18px 0;
-  font-size: 12px;
-  color: rgba(255,255,255,.3);
-  text-align: center;
-}
+  .row {
+    display: grid;
+    grid-template-columns: 5fr 4fr 3fr;
+    gap: 40px;
+    padding-bottom: 44px;
 
-@media (max-width: 900px) {
-  .footer-inner { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 600px) {
-  .footer-inner { grid-template-columns: 1fr; }
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .boxfot {
+    .inner {
+      // ============================================================
+      //  LOGO WRAPPER - خلفية بيضاء علي قد الصورة بالظبط
+      // ============================================================
+      .logo-wrapper {
+        background: #ffffff;
+        display: inline-block;
+        // padding: 1px 2px;  // padding خفيف جداً حوالي الصورة
+        border-radius: 6px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        line-height: 0;  // يمنع أي مسافات إضافية
+        
+        img {
+          max-width: 170px;
+          display: block;
+          margin: 0;
+          height: auto;
+        }
+      }
+
+      p {
+        font-size: 13px;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.6);
+        max-width: 300px;
+        margin-top: 0;
+      }
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+      position: relative;
+
+      &:after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 2px;
+        background: #8B4513;
+        margin-top: 8px;
+      }
+    }
+
+    // Social Icons
+    .social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        transition: all 0.3s ease;
+
+        svg {
+          width: 18px;
+          height: 18px;
+          fill: rgba(255, 255, 255, 0.5);
+          transition: fill 0.3s ease;
+        }
+
+        &:hover {
+          background: #8B4513;
+
+          svg {
+            fill: #fff;
+          }
+        }
+      }
+    }
+
+    // Navigation Links (Quick Links)
+    .navmenu {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        padding: 4px 0;
+        transition: color 0.3s ease;
+
+        svg {
+          flex-shrink: 0;
+          fill: rgba(255, 255, 255, 0.3);
+          transition: fill 0.3s ease;
+        }
+
+        &:hover {
+          color: #fff;
+
+          svg {
+            fill: #8B4513;
+          }
+        }
+      }
+    }
+
+    // Contact Information (media)
+    .media {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+
+      svg {
+        flex-shrink: 0;
+        margin-top: 4px;
+        fill: rgba(255, 255, 255, 0.3);
+        width: 20px;
+        height: 20px;
+      }
+
+      .contant {
+        p,
+        a {
+          font-size: 13px;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.6;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        a:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  // Copyright
+  .copyright {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 18px 0 22px;
+    text-align: center;
+
+    p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3);
+      margin: 0;
+    }
+  }
 }
