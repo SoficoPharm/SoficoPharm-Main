@@ -1,39 +1,35 @@
 <header class="navbar">
   <div class="nav-top container">
 
-    <!-- Logo -->
+    <!-- Hamburger (LEFT on mobile) -->
+    <button
+      class="hamburger"
+      (click)="toggleMenu()"
+      [class.open]="menuOpen()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Logo (CENTER on mobile) -->
     <a class="logo" routerLink="/">
       <div class="logo-icon">
         <img
           src="/logoSoficoPharam.png"
           alt="Sofico Pharm Logo">
       </div>
-
-     
     </a>
 
-    <!-- Contact -->
+    <!-- Contact (Hidden on mobile) -->
     <div class="nav-contact">
       <span class="contact-phone">
         📞 16556
       </span>
-
       <span class="contact-email">
         CCSPV@Soficopharm.net
       </span>
     </div>
 
-    <!-- Hamburger -->
-    <button
-      class="hamburger"
-      (click)="toggleMenu()"
-      [class.open]="menuOpen()">
-
-      <span></span>
-      <span></span>
-      <span></span>
-
-    </button>
   </div>
 
   <!-- Navigation -->
