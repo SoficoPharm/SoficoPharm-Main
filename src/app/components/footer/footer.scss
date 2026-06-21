@@ -46,7 +46,22 @@
           height: auto;
         }
       }
-
+  .logo-wrappertransparent {
+        background: transparent;
+        display: inline-block;
+        // padding: 1px 2px;  // padding خفيف جداً حوالي الصورة
+        border-radius: 6px;
+        margin-bottom: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        line-height: 0;  // يمنع أي مسافات إضافية
+        
+        img {
+          max-width: 170px;
+          display: block;
+          margin: 0;
+          height: auto;
+        }
+      }
       p {
         font-size: 13px;
         line-height: 1.7;
